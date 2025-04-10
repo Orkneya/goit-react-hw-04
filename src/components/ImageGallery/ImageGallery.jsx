@@ -1,4 +1,5 @@
 // import React from "react";
+import ImageCard from "../ImageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
 const ImageGallery = ({ newImgs }) => {
@@ -9,10 +10,7 @@ const ImageGallery = ({ newImgs }) => {
       <ul>
         {newImgs.map((newImg) => (
           <li key={newImg.id}>
-            key={newImg.id}
-            <div>
-              <img src={newImg.urls.small} alt={newImg.alt_description} />
-            </div>
+            <ImageCard newImg={newImg} />
           </li>
         ))}
       </ul>
