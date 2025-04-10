@@ -13,10 +13,11 @@ function App() {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
+    const abortController = new AbortController();
     const getImg = async () => {
       try {
         setLoading(true);
-        const data = await fetchImgs(query, page);
+        const data = await fetchImgs(query, page, abortController.signal);
         console.log("data:", data);
 
         setImages((prev) => [...prev, ...data]);
@@ -31,6 +32,9 @@ function App() {
       }
     };
     getImg();
+    return () => {
+      abortController.abort();
+    };
   }, [query, page]);
 
   const handleChangeQuery = (newQuery) => {
@@ -45,7 +49,7 @@ function App() {
     <div>
       <SearchBar handleChangeQuery={handleChangeQuery} />
       <ImageGallery newImgs={images} />
-
+      {loading && <h2>Loading...</h2>}
       <button onClick={() => setPage(page + 1)}>Load more</button>
     </div>
   );
