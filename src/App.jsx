@@ -5,6 +5,7 @@ import { fetchImgs } from "./components/serves/api";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Loader from "./components/Loader/Loader";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -55,7 +56,10 @@ function App() {
       <ImageGallery newImgs={images} />
       {loading && <Loader />}
       {/* {<LoadMoreBtn setNewPage={setPage} />} */}
-      {!loading && <button onClick={() => setPage(page + 1)}>Load more</button>}
+      {images.length > 0 && <LoadMoreBtn onClick={() => setPage(page + 1)} />}
+      {/* {images.length > 0 && (
+        <button onClick={() => setPage(page + 1)}>Load more</button>
+      )} */}
     </div>
   );
 }
