@@ -3,13 +3,17 @@
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
-  /* border: 1px solid black;
+  /* gap: 10px;
+  border: 1px solid black;
   border-radius: 8px;
   box-shadow: 2px 2px 4px 4px grey; */
   li {
+    /* width: calc(25% - 12px);
+    height: 200px;
+    object-fit: cover; */
+
     padding: 25px;
     border: 1px solid black;
     border-radius: 8px;
