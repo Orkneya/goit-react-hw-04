@@ -13,8 +13,8 @@ const ImageModal = ({ isOpen, onRequestClose, image }) => {
           backgroundColor: "rgba(0, 0, 0, 0.8)",
         },
         content: {
-          maxWidth: "80%",
-          maxHeight: "80%",
+          maxWidth: "70%",
+          maxHeight: "70%",
           margin: "auto",
           padding: 0,
           background: "none",

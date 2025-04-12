@@ -19,6 +19,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [totalPages, setTotalPages] = useState(null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -29,10 +30,9 @@ function App() {
           return;
         }
         const data = await fetchImgs(query, page, abortController.signal);
-        console.log("data:", data.results);
 
         setImages((prev) => [...prev, ...data.results]);
-        console.log("images:", images);
+        setTotalPages(data.total_pages);
       } catch (error) {
         console.log("Error:", error);
         setError(true);
@@ -42,7 +42,7 @@ function App() {
       }
     };
     getImg();
-    // console.log("ResultTotalPages:", data.results.total_pages);
+
     return () => {
       abortController.abort();
     };
@@ -60,7 +60,6 @@ function App() {
   const handleChangeQuery = (newQuery) => {
     toast.success(`Query changed to ${newQuery}`);
     setQuery(newQuery);
-    console.log("newQuery:", newQuery);
     setImages([]);
     setPage(1);
   };
@@ -78,25 +77,11 @@ function App() {
           image={selectedImage}
         />
       )}
-      ''{" "}
-      {images.length > 0 && <LoadMoreBtn onClick={() => setPage(page + 1)} />}
+      {page < totalPages && images.length > 0 && (
+        <LoadMoreBtn onClick={() => setPage(page + 1)} />
+      )}
     </div>
   );
 }
 
 export default App;
-// {page < totalPages && !isLoading && <button onClick={() => setPage(page + 1)}>Load more</button>}
-//LoadMoreBtn
-//  {/* <ErrorMessage/> */}
-// {/* <ImageCard/> */}
-// {/* <ImageModal/>  */}
-{
-  /* <ClipLoader
-  color={fuchsia}
-  loading={loading}
-  cssOverride={override}
-  size={150}
-  aria-label="Loading Spinner"
-  data-testid="loader"
-/>; */
-}

@@ -13,8 +13,8 @@ const SearchBar = ({ handleChangeQuery }) => {
         <input
           type="text"
           name="newImg"
-          // autocomplete="off"
-          // autofocus
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
         <button type="submit">Search</button>

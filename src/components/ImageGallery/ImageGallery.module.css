@@ -24,22 +24,8 @@
   margin-top: 70px; /* отступ для зафиксированного input */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* grid-template-columns: repeat(4, 1fr); */
   gap: 16px;
-  padding: 20px;
-}
-.gallery_items {
   padding: 0;
-  /* width: calc(25% - 16px); */
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  cursor: pointer;
-  object-fit: cover;
-
-  /* padding: 25px;
-  border: 1px solid black;
-  border-radius: 8px; */
-  /* box-shadow: 2px 2px 4px 4px grey; */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  margin: 0;
 }
