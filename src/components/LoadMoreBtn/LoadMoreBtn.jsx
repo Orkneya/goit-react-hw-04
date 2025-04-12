@@ -1,9 +1,12 @@
 import React from "react";
+import s from "./LoadMoreBtn.module.css";
 
 const LoadMoreBtn = ({ onClick }) => {
   return (
     <div>
-      <button onClick={onClick}>Load more</button>
+      <button className={s.loadBtn} onClick={onClick}>
+        Load more
+      </button>
     </div>
   );
 };

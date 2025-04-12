@@ -6,6 +6,10 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import Modal from "react-modal";
+import ImageModal from "./components/ImageModal/ImageModal";
+
+Modal.setAppElement("#root");
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -13,6 +17,8 @@ function App() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -36,11 +42,20 @@ function App() {
       }
     };
     getImg();
-    // console.log("totalPages:", response.data.total_pages);
+    // console.log("ResultTotalPages:", data.results.total_pages);
     return () => {
       abortController.abort();
     };
   }, [query, page]);
+
+  function modalIsOpen(image) {
+    setSelectedImage(image);
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+    setSelectedImage(null);
+  }
 
   const handleChangeQuery = (newQuery) => {
     toast.success(`Query changed to ${newQuery}`);
@@ -51,15 +66,20 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="s.container">
+      <Toaster />
       <SearchBar handleChangeQuery={handleChangeQuery} />
-      <ImageGallery newImgs={images} />
       {loading && <Loader />}
-      {/* {<LoadMoreBtn setNewPage={setPage} />} */}
+      <ImageGallery newImgs={images} openModal={modalIsOpen} />
+      {isOpen && (
+        <ImageModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          image={selectedImage}
+        />
+      )}
+      ''{" "}
       {images.length > 0 && <LoadMoreBtn onClick={() => setPage(page + 1)} />}
-      {/* {images.length > 0 && (
-        <button onClick={() => setPage(page + 1)}>Load more</button>
-      )} */}
     </div>
   );
 }
@@ -70,3 +90,13 @@ export default App;
 //  {/* <ErrorMessage/> */}
 // {/* <ImageCard/> */}
 // {/* <ImageModal/>  */}
+{
+  /* <ClipLoader
+  color={fuchsia}
+  loading={loading}
+  cssOverride={override}
+  size={150}
+  aria-label="Loading Spinner"
+  data-testid="loader"
+/>; */
+}
