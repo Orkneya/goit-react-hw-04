@@ -2,14 +2,13 @@
 import ImageCard from "../ImageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({ newImgs }) => {
+const ImageGallery = ({ newImgs, openModal }) => {
   return (
-    <div className={s.list}>
+    <div className={s.gallery}>
       <ul>
         {newImgs.map((newImg) => (
-          <li key={newImg.id}>
-            {/* <p>key={newImg.id}</p> */}
-            <ImageCard newImg={newImg} />
+          <li className={s.gallery_items} key={newImg.id}>
+            <ImageCard newImg={newImg} openModal={openModal} />
           </li>
         ))}
       </ul>
@@ -18,7 +17,3 @@ const ImageGallery = ({ newImgs }) => {
 };
 
 export default ImageGallery;
-
-//             <a href={item.url || item.story_url} target='_blank'>
-//               {item.title || item.story_title}
-//             </a>

@@ -1,9 +1,10 @@
 import s from "./Loader.module.css";
+import { ClipLoader } from "react-spinners";
 
 const Loader = () => {
   return (
-    <div>
-      <h2>Loading...</h2>
+    <div className={s.container}>
+      <ClipLoader color="#36d7b7" loading="Loading..." size={50} />
     </div>
   );
 };
