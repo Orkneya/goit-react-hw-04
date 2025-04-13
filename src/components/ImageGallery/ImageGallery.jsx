@@ -4,8 +4,8 @@ import s from "./ImageGallery.module.css";
 
 const ImageGallery = ({ newImgs, openModal }) => {
   return (
-    <div className={s.gallery}>
-      <ul>
+    <div>
+      <ul className={s.gallery}>
         {newImgs.map((newImg) => (
           <li key={newImg.id}>
             <ImageCard newImg={newImg} openModal={openModal} />
